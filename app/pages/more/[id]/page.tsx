@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
+import { FaCircleChevronLeft } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function ViewPage({ params }: { params: { id: string } }) {
   const [viewData, setViewData] = useState({ term: "", interpretation: "" });
@@ -29,31 +31,27 @@ export default function ViewPage({ params }: { params: { id: string } }) {
     fetchData();
   }, [params.id]);
 
-  const handleNavigateBack = () => {
-    router.push("/");
-  };
-
   return (
     <div className="bg-slate-100 p-3 rounded-lg">
-      <div className="flex items-center justify-between px-2 md:px-0">
-        <button
-          className="text-lg font-bold xl:text-2xl lg:text-2xl md:text-2xl"
-          onClick={handleNavigateBack}
+       <div className="flex items-center justify-between mb-4">
+        <Link
+          className="text-blue-500 bg-blue-200 py-2 px-4 rounded-md"
+          href={"/"}
         >
-          <FontAwesomeIcon icon={faCircleArrowLeft} />
-        </button>
+          <FaCircleChevronLeft size={24} />
+        </Link>
         <h2 className="text-lg md:text-2xl font-bold md:my-8 my-4">
           View Page
         </h2>
       </div>
 
       <div className="flex gap-3 flex-col p-4">
-        <div className="mt-4">
-          <h2 className="text-xl font-bold">{viewData.term}</h2>
+        <div>
+          <h2 className="md:text-lg text-base font-bold">{viewData.term}</h2>
         </div>
         <hr />
         <div className="mb-4">
-          <p className="md:text-lg text:sm">{viewData.interpretation}</p>
+          <p className="md:text-lg text-sm">{viewData.interpretation}</p>
         </div>
       </div>
       {error && (

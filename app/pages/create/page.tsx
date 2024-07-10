@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useState } from "react";
+import { FaCircleChevronLeft } from "react-icons/fa6";
 
 export default function CreatePage() {
   const [formData, setFormData] = useState({ term: "", interpretation: "" });
@@ -59,7 +61,17 @@ export default function CreatePage() {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold my-8">Add New Note</h2>
+      <div className="flex items-center justify-between mb-4">
+        <Link
+          className="text-blue-500 bg-blue-200 py-2 px-4 rounded-md"
+          href={"/"}
+        >
+          <FaCircleChevronLeft size={24} />
+        </Link>
+        <h2 className="text-lg md:text-2xl font-bold md:my-8 my-4">
+          Add Page
+        </h2>
+      </div>
       {error && (
         <p className="text-red-500 mb-4 bg-red-200 rounded-md p-2">{error}</p>
       )}

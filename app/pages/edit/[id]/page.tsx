@@ -3,8 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FaCircleChevronLeft } from "react-icons/fa6";
 
 export default function EditPage({ params }: { params: { id: string } }) {
   const [formData, setFormData] = useState({ term: "", interpretation: "" });
@@ -78,12 +77,12 @@ export default function EditPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="bg-slate-100 p-3 rounded-lg">
-      <div className="flex items-center justify-between px-2 md:px-0">
+       <div className="flex items-center justify-between mb-4">
         <Link
-          className="text-lg font-bold xl:text-2xl lg:text-2xl md:text-2xl"
+          className="text-blue-500 bg-blue-200 py-2 px-4 rounded-md"
           href={"/"}
         >
-          <FontAwesomeIcon icon={faCircleArrowLeft} />
+          <FaCircleChevronLeft size={24} />
         </Link>
         <h2 className="text-lg md:text-2xl font-bold md:my-8 my-4">
           Update Page
