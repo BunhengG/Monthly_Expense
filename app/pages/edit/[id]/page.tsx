@@ -1,7 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditPage({ params }: { params: { id: string } }) {
   const [formData, setFormData] = useState({ term: "", interpretation: "" });
@@ -51,7 +54,7 @@ export default function EditPage({ params }: { params: { id: string } }) {
     try {
       const data = {
         term: formData.term,
-        Interpretations: formData.interpretation, // Adjust to match backend expectations
+        Interpretations: formData.interpretation,
       };
 
       const response = await fetch(`/api/Interpretations/${params.id}`, {
@@ -74,8 +77,18 @@ export default function EditPage({ params }: { params: { id: string } }) {
   };
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold my-8">Edit Note</h2>
+    <div className="bg-slate-100 p-3 rounded-lg">
+      <div className="flex items-center justify-between px-2 md:px-0">
+        <Link
+          className="text-lg font-bold xl:text-2xl lg:text-2xl md:text-2xl"
+          href={"/"}
+        >
+          <FontAwesomeIcon icon={faCircleArrowLeft} />
+        </Link>
+        <h2 className="text-lg md:text-2xl font-bold md:my-8 my-4">
+          Update Page
+        </h2>
+      </div>
       {error && (
         <p className="text-red-500 mb-4 bg-red-200 rounded-md p-2">{error}</p>
       )}
@@ -86,18 +99,18 @@ export default function EditPage({ params }: { params: { id: string } }) {
           placeholder="Term"
           value={formData.term}
           onChange={handleInputChange}
-          className="py-1 px-4 border rounded-md"
+          className="py-1 md:px-4 px-2 border rounded-md text-base md:text-lg"
         />
         <textarea
           name="interpretation"
           placeholder="Interpretation"
           value={formData.interpretation}
           onChange={handleInputChange}
-          className="py-4 px-4 border rounded-md resize-none"
+          className="md:py-4 py-2 px-4 border rounded-md resize-none text-base md:text-lg"
           rows={4}
         />
         <button
-          className="py-2 px-4 bg-green-600 text-white rounded-md"
+          className="py-2 px-4 bg-green-600 text-white rounded-md text-base md:text-lg"
           type="submit"
           disabled={isLoading}
         >

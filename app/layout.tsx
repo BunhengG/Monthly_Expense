@@ -23,7 +23,7 @@ export default function RootLayout({
           <div className="px-4">
             <Header />
           </div>
-          <main className="p-8 text-lg">{children}</main>
+          <main className="p-4 text-lg">{children}</main>
           <div className="px-4">
             <Footer />
           </div>
